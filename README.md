@@ -2,7 +2,7 @@
 
 A Python library for collecting information from the MethaneData API on methane emissions that it is published by [IMEO/MARS](https://methanedata.unep.org/map?sector=&company=&country=&cc=&sat=&limit=1000&pub=#mcoord=1.43/0/0)
 
-![Build Status](https://img.shields.io/badge/under%20development)
+![Build Status](https://img.shields.io/badge/under%20development-8A2BE2)
 
 ## Table of Contents
 1. [Installation](#installation)
