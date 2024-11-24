@@ -5,6 +5,7 @@
 import request
 import json
 import geojson
+import geopandas as gpd
 
 ###############################################################################
 # CONSTANTS
@@ -51,36 +52,42 @@ def list_sources():
     # Return the list
     return sources
 
-def list_imagecoord_asgeojson():
+def list_imagecoord(asdf = False):
     ''' Lists all the sources
     :returns: dict. Source list.
     '''
     # Get the list
     imgcoord = request._request(request.URLIB.PLUMEIMGCOORD)
     # Companies as data frame
-    imgcoord = geojson.FeatureCollection([json.loads(imgcoord)])
+    imgcoord = json.loads(imgcoord)
+    # Coerce to dataframe if requested
+    if asdf: imgcoord = gpd.GeoDataFrame.from_features(imgcoord['features'])
     # Return the list
     return imgcoord
 
-def list_plumes_asgeojson():
+def list_plumes(asdf = False):
     ''' Lists all the sources
-    :returns: dict. Source list.
+    :returns: json. Source list.
     '''
     # Get the list
     plumes = request._request(request.URLIB.PLUMEGEOJSON)
     # Companies as data frame
-    plumes = geojson.FeatureCollection([json.loads(plumes)])
+    plumes = json.loads(plumes)
+    # Coerce to dataframe if requested
+    if asdf: plumes = gpd.GeoDataFrame.from_features(plumes['features'])
     # Return the list
     return plumes
 
-def list_centroids_asgeojson():
+def list_centroids(asdf = False):
     ''' Lists all the sources
-    :returns: dict. Source list.
+    :returns: json. Source list.
     '''
     # Get the list
     centroids = request._request(request.URLIB.PLUMECENTROID)
     # Companies as data frame
-    centroids = geojson.FeatureCollection([json.loads(centroids)])
+    centroids = json.loads(centroids)
+    # Coerce to dataframe if requested
+    if asdf: centroids = gpd.GeoDataFrame.from_features(centroids['features'])
     # Return the list
     return centroids
 
