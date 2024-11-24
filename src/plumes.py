@@ -22,6 +22,8 @@ def list_sectors():
     sectors = request._request(request.URLIB.PLUMESECTOR)
     # Companies as data frame
     sectors = request._json_response_to_df(sectors)
+    # Rename the column
+    sectors.columns = ['Sectors']
     # Return the list
     return sectors
 
@@ -33,6 +35,8 @@ def list_satellites():
     satellites = request._request(request.URLIB.PLUMESAT)
     # Companies as data frame
     satellites = request._json_response_to_df(satellites)
+    # Rename the column
+    satellites.columns = ['Satellites']
     # Return the list
     return satellites
 
@@ -47,7 +51,7 @@ def list_sources():
     # Return the list
     return sources
 
-def list_image_coordinates():
+def list_imagecoord_asgeojson():
     ''' Lists all the sources
     :returns: dict. Source list.
     '''
@@ -57,3 +61,26 @@ def list_image_coordinates():
     imgcoord = geojson.FeatureCollection([json.loads(imgcoord)])
     # Return the list
     return imgcoord
+
+def list_plumes_asgeojson():
+    ''' Lists all the sources
+    :returns: dict. Source list.
+    '''
+    # Get the list
+    plumes = request._request(request.URLIB.PLUMEGEOJSON)
+    # Companies as data frame
+    plumes = geojson.FeatureCollection([json.loads(plumes)])
+    # Return the list
+    return plumes
+
+def list_centroids_asgeojson():
+    ''' Lists all the sources
+    :returns: dict. Source list.
+    '''
+    # Get the list
+    centroids = request._request(request.URLIB.PLUMECENTROID)
+    # Companies as data frame
+    centroids = geojson.FeatureCollection([json.loads(centroids)])
+    # Return the list
+    return centroids
+
