@@ -21,7 +21,7 @@ class URLIB:
     PLUMES = 'https://methanedata.unep.org/api/plumes'
     PLUMEGEOJSON = 'https://methanedata.unep.org/api/plumes/geojson'
     PLUMECENTROID ='https://methanedata.unep.org/api/plumes/centroids/geojson'
-    PLUMEIMGCOORD = 'https://methanedata.unep.org/api/plumes/image-coordinates'
+    PLUMEIMGCOORD = 'https://methanedata.unep.org/api/plumes/images-coordinates'
     PLUMESAT = 'https://methanedata.unep.org/api/plumes/satellites'
     PLUMESECTOR = 'https://methanedata.unep.org/api/sector'
     PLUMESOURCE = 'https://methanedata.unep.org/api/plumes/sources'
