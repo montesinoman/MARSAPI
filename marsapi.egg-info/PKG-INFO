@@ -1,3 +1,17 @@
+Metadata-Version: 2.1
+Name: marsapi
+Version: 0.0.1
+Summary: Methane Data API
+Home-page: https://github.com/montesinoman/MARSAPI
+Author: Manuel Montesino San Martin
+Author-email: mmontesinosanmartin@gmail.com
+License: MIT
+Description-Content-Type: text/markdown
+Requires-Dist: geojson
+Requires-Dist: pandas
+Requires-Dist: geopandas
+Requires-Dist: folium
+
 # MARSAPI
 
 A Python library for collecting information from the MethaneData API on methane emissions that it is published by [IMEO/MARS](https://methanedata.unep.org/map?sector=&company=&country=&cc=&sat=&limit=1000&pub=#mcoord=1.43/0/0)

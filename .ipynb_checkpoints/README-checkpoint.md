@@ -44,7 +44,7 @@ folium.GeoJson(img_coords).add_to(m)
 m
 ```
 
-## Feature
+## Features
 
 - Import ready-to-use information by MARS about methane emissions
 - Easy to work with commonly used data types as `DataFrames` or `GeoJSON`
