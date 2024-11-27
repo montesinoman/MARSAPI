@@ -2,10 +2,10 @@
 # DEPENDENCIES
 ###############################################################################
 
-import request
 import json
 import geojson
 import geopandas as gpd
+from ..request import request
 
 ###############################################################################
 # CONSTANTS
