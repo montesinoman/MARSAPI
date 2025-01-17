@@ -5,33 +5,53 @@
 import subprocess
 import json
 import pandas
+import os
+import sys
 
 ###############################################################################
 # CONSTANTS
 ###############################################################################
 
 class URLIB:
+    # Root URL
+    root = 'https://methanedata.unep.org'
     # HEALTH block
-    HEALTH = 'https://methanedata.unep.org/api/healthcheck'
+    HEALTH = os.path.join(root,'api/healthcheck')
     # COUNTRY block
-    COUNTRIES = 'https://methanedata.unep.org/api/countries'
-    COUNTRYSTATS = 'https://methanedata.unep.org/api/countries/%s/keystats'
-    COUNTRYFACTS = 'https://methanedata.unep.org/api/factsheets/country/%s/year/%s'
+    COUNTRIES = os.path.join(root,'api/countries')
+    COUNTRYSTATS = os.path.join(root,'api/countries/%s/keystats')
+    COUNTRYFACTS = os.path.join(root,'api/factsheets/country/%s/year/%s')
     # PLUME block
-    PLUMES = 'https://methanedata.unep.org/api/plumes'
-    PLUMEGEOJSON = 'https://methanedata.unep.org/api/plumes/geojson'
-    PLUMECENTROID ='https://methanedata.unep.org/api/plumes/centroids/geojson'
-    PLUMEIMGCOORD = 'https://methanedata.unep.org/api/plumes/images-coordinates'
-    PLUMESAT = 'https://methanedata.unep.org/api/plumes/satellites'
-    PLUMESECTOR = 'https://methanedata.unep.org/api/sector'
-    PLUMESOURCE = 'https://methanedata.unep.org/api/plumes/sources'
+    PLUMES = os.path.join(root,'api/plumes')
+    PLUMEGEOJSON = os.path.join(root,'api/plumes/geojson')
+    PLUMECENTROID = os.path.join(root,'api/plumes/centroids/geojson')
+    PLUMEIMGCOORD = os.path.join(root,'api/plumes/images-coordinates')
+    PLUMESAT = os.path.join(root,'api/plumes/satellites')
+    PLUMESECTOR = os.path.join(root,'api/sector')
+    PLUMESOURCE = os.path.join(root,'api/plumes/sources')
     # COMPANY block
-    COMPANY = 'https://methanedata.unep.org/api/companies'
-    COMPANYFACT = 'https://methanedata.unep.org/api/factsheets/company/%s/year/%s'
+    COMPANY = os.path.join(root,'api/companies')
+    COMPANYFACT = os.path.join(root,'api/factsheets/company/%s/year/%s')
 
 ###############################################################################
 # FUNCTIONS
 ###############################################################################
+
+def _add_url_filters(url, filters):
+    ''' Adds filters to the url
+    :param url: str. URL.
+    :param filters: list. List of filters.
+    :returns: str. URL with the filters
+    '''
+    # Build a list with the filters
+    filter_list = [f'{filtr.key()}={filtr.value().replace(" ","%20")}' \
+                   for filtr in filters if filtr.value() is not None]
+    # Join all filters
+    filter_path = ('&').join(filter_list)
+    # Add to the url
+    url_with_filters = os.path.join(url, filter_path)
+    # Return the full URL
+    return url_with_filters
 
 def _request(url):
     ''' Sends the request and captures the response
